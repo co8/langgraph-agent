@@ -35,7 +35,7 @@ const agentModel = new ChatOllama({
 const stateThreadId = 6784834495747888;
 
 const systemPrompt =
-  "Use tools to access the internet for each request. Present the answer for command line, in the location's local language, as a formatted list with fun emojis for each location onlyin local measurements. Do not provide excuses, alternatives, additional or sources. Keep it simple. Here's an API key if needed, OPEN_WEATHER_API_KEY=" +
+  "Use tools to access the internet for each request. Present the answer for command line, in the location's local language, as a formatted list with fun emojis for each location only in local measurements. Do not provide excuses, alternatives, additional or sources. Keep it simple. Here's an API key if needed, OPEN_WEATHER_API_KEY=" +
   process.env.OPEN_WEATHER_API_KEY;
 
 // Initialize memory to persist state between graph runs

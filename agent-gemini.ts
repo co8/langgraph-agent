@@ -7,6 +7,7 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 
+process.env.GOOGLE_API_KEY;
 process.env.TAVILY_API_KEY;
 process.env.LANGSMITH_PROJECT;
 process.env.LANGSMITH_API_KEY;
@@ -15,28 +16,36 @@ process.env.LANGSMITH_ENDPOINT;
 
 import { TavilySearchResults } from "@langchain/community/tools/tavily_search";
 //import { ChatOpenAI } from "@langchain/openai";
-import { ChatOllama } from "@langchain/ollama";
+//import { ChatOllama } from "@langchain/ollama";
+import { ChatVertexAI } from "@langchain/google-vertexai";
 import { MemorySaver } from "@langchain/langgraph";
 import { HumanMessage } from "@langchain/core/messages";
 import { createReactAgent } from "@langchain/langgraph/prebuilt";
 
 // Define the tools for the agent to use
-const agentTools = [new TavilySearchResults({ maxResults: 3 })];
+const agentTools = [new TavilySearchResults({ maxResults: 5 })];
 // Define LLModel
 //const agentModel = new ChatOpenAI({ temperature: 0 });
-const agentModel = new ChatOllama({
-  model: "llama3.2:3b",
-  //model: "mistral",
-  //model: "phi4-mini",
+// const agentModel = new ChatOllama({
+//   //model: "llama3.2:3b",
+//   model: "mistral",
+//   //model: "phi4-mini",
+//   temperature: 0,
+//   //verbose: true,
+// });
+const agentModel = new ChatVertexAI({
+  model: "gemini-2.0-pro-exp-02-05",
   temperature: 0,
-  //verbose: true,
+  maxRetries: 2,
 });
 
-const stateThreadId = 6784834495747888;
-
-const systemPrompt =
-  "Use tools to access the internet for each request. Present the answer for command line, in the location's local language, as a formatted list with fun emojis for each location onlyin local measurements. Do not provide excuses, alternatives, additional or sources. Keep it simple. Here's an API key if needed, OPEN_WEATHER_API_KEY=" +
-  process.env.OPEN_WEATHER_API_KEY;
+////////////////////////
+// DEV Variables
+const stateThreadId = 767848347888;
+const systemPrompt = "";
+const firstRequest = "current weather sabadell spain";
+const secondRequest = "how about dana point";
+////////////////////////
 
 // Initialize memory to persist state between graph runs
 const agentCheckpointer = new MemorySaver();
@@ -50,11 +59,7 @@ const agent = createReactAgent({
 // Now it's time to use!
 const agentFinalState = await agent.invoke(
   {
-    messages: [
-      new HumanMessage(
-        "what is the current time, date, and weather in sabadell spain 08203"
-      ),
-    ],
+    messages: [new HumanMessage(firstRequest)],
   },
   { configurable: { thread_id: stateThreadId } }
 );
@@ -65,11 +70,7 @@ console.log(
 
 const agentNextState = await agent.invoke(
   {
-    messages: [
-      new HumanMessage(
-        "how about dana point california 92629? Use Open Weather to get realtime data"
-      ),
-    ],
+    messages: [new HumanMessage(secondRequest)],
   },
   { configurable: { thread_id: stateThreadId } }
 );

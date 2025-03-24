@@ -1,6 +1,10 @@
 # Mac
 .DS_Store
 
+#google
+credentials.json
+gen*.json
+
 # Logs
 logs
 *.log
