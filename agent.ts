@@ -1,4 +1,6 @@
-// agent.ts
+// LangGraph Quickstart
+// "React Agent" = Reason + Act Agent
+// Provides Current weather in multiple questions in the same session
 // modified from https://langchain-ai.github.io/langgraphjs/tutorials/quickstart/
 
 // load env variables
