@@ -34,7 +34,7 @@ const agentTools = [new TavilySearchResults({ maxResults: 5 })];
 //   //verbose: true,
 // });
 const agentModel = new ChatVertexAI({
-  model: "gemini-2.0-pro-exp-02-05",
+  model: "gemini-2.0-flash",
   temperature: 0,
   maxRetries: 2,
 });
