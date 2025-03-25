@@ -25,23 +25,22 @@ const agentTools = [new TavilySearchResults({ maxResults: 5 })];
 // Define LLModel
 //const agentModel = new ChatOpenAI({ temperature: 0 });
 const agentModel = new ChatOllama({
-  model: "mistral-small",
+  //model: "mistral-small",
   //model: "mistral-nemo",
   //model: "llama3.2:3b",
   //model: "mistral",
-  //model: "qwen2.5:14b",
+  model: "qwen2.5:14b",
   //temperature: 0,
   //verbose: true,
 });
 
 ////////////////////////
 // DEV Variables
-const stateThreadId = "28877148878787";
+const stateThreadId = "3028871487";
 const systemPrompt =
-  "you are a copywriter and can use the internet to research and get to know the client you're writing about";
-const firstRequest =
-  "write me a short headline and body copy for an email for a happy hour at Jett Thompson Home. Highlight their store offering, the new design studio, and last projects in their portfolio";
-const secondRequest = "make it shorter and more sophisticated";
+  "you are a personal assistant. use tools to search the internet for realtime information. cite sources. be concise";
+const firstRequest = "what was the price of $KUJI on March 1st, 2025";
+const secondRequest = "translate the answer to catalá";
 ////////////////////////
 
 // Initialize memory to persist state between graph runs

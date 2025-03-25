@@ -6,5 +6,8 @@
     "@langchain/google-vertexai": "^0.2.2",
     "@langchain/langgraph": "^0.2.57",
     "@langchain/ollama": "^0.2.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.3"
   }
 }
