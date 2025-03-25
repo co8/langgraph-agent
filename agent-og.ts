@@ -28,20 +28,18 @@ const agentModel = new ChatOllama({
   //model: "llama3.2:3b",
   //model: "mistral",
   //model: "hermes3:3b",
-  //model: "aya-expanse",
+  model: "aya-expanse",
   //model: "smollm2",
   //model: "command-r7b",
   //model: "granite3.1-moe:3b",
-  model: "granite3.1-dense:2b",
+  //model: "granite3.1-dense:2b",
   //temperature: 0,
   //verbose: true,
 });
 
-const stateThreadId = 574788449;
+const stateThreadId = 6564654;
 
-const systemPrompt =
-  "Use tools to access the internet for each request. Present the answer in the location's local language and measurements as a formatted list with emojis. Do not provide forecasts, excuses, alternatives, additional content. Keep it simple. Here's an API key if needed, OPEN_WEATHER_API_KEY=" +
-  process.env.OPEN_WEATHER_API_KEY;
+const systemPrompt = "";
 
 // Initialize memory to persist state between graph runs
 const agentCheckpointer = new MemorySaver();
@@ -55,11 +53,7 @@ const agent = createReactAgent({
 // Now it's time to use!
 const agentFinalState = await agent.invoke(
   {
-    messages: [
-      new HumanMessage(
-        "what is the current time, date, and weather in sabadell spain 08203"
-      ),
-    ],
+    messages: [new HumanMessage("what is the current weather in sf")],
   },
   { configurable: { thread_id: stateThreadId } }
 );
@@ -70,11 +64,7 @@ console.log(
 
 const agentNextState = await agent.invoke(
   {
-    messages: [
-      new HumanMessage(
-        "how about dana point california 92629? Use Open Weather to get realtime data"
-      ),
-    ],
+    messages: [new HumanMessage("how about ny")],
   },
   { configurable: { thread_id: stateThreadId } }
 );
