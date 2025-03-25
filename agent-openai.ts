@@ -14,8 +14,7 @@ process.env.LANGSMITH_TRACING;
 process.env.LANGSMITH_ENDPOINT;
 
 import { TavilySearchResults } from "@langchain/community/tools/tavily_search";
-//import { ChatOpenAI } from "@langchain/openai";
-import { ChatOllama } from "@langchain/ollama";
+import { ChatOpenAI } from "@langchain/openai";
 import { MemorySaver } from "@langchain/langgraph";
 import { HumanMessage } from "@langchain/core/messages";
 import { createReactAgent } from "@langchain/langgraph/prebuilt";
@@ -23,33 +22,14 @@ import { createReactAgent } from "@langchain/langgraph/prebuilt";
 // Define the tools for the agent to use
 const agentTools = [new TavilySearchResults({ maxResults: 3 })];
 // Define LLModel
-//const agentModel = new ChatOpenAI({ temperature: 0 });
-const agentModel = new ChatOllama({
-  //model: "mistral-nemo",
-  //model: "nemotron-mini",
-  //model: "llama3.2:3b",
-  //model: "mistral",
-  //model: "solar-pro",
-  model: "qwen2.5:14b",
-  //model: "hermes3:3b",
-  //model: "aya-expanse",
-  //model: "smollm2",
-  //model: "command-r7b",
-  //model: "granite3.1-moe:3b",
-  //model: "granite3.1-dense:2b",
-  //temperature: 0,
-  //verbose: true,
-});
+const agentModel = new ChatOpenAI({ temperature: 0 });
 
 ////////////////////////
 // DEV Variables
-const stateThreadId = 767848347888;
-const systemPrompt =
-  "you are typescript software engineer with expertise in javascript and the langgraph framework and libraries";
-const firstRequest =
-  "use langgraph.js to create a langgraph agent that can check the latest price the US Dollar to Euro";
-const secondRequest =
-  "Review and Test the code and make it easy for me to copy";
+const stateThreadId = 98557;
+const systemPrompt = "use emojis and local languages plus date and time";
+const firstRequest = "current weather sabadell spain";
+const secondRequest = "how about dana point";
 ////////////////////////
 
 // Initialize memory to persist state between graph runs

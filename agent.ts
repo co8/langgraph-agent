@@ -25,8 +25,8 @@ const agentTools = [new TavilySearchResults({ maxResults: 3 })];
 // Define LLModel
 //const agentModel = new ChatOpenAI({ temperature: 0 });
 const agentModel = new ChatOllama({
-  model: "mistral-nemo",
-  //model: "nemotron-mini",
+  //model: "mistral-nemo",
+  model: "nemotron-mini",
   //model: "llama3.2:3b",
   //model: "mistral",
   //model: "solar-pro",
@@ -43,15 +43,13 @@ const agentModel = new ChatOllama({
 
 ////////////////////////
 // DEV Variables
-const stateThreadId = 767848347888;
-const systemPrompt = "";
-const firstRequest = "current weather sabadell spain";
-const secondRequest = "how about dana point";
-////////////////////////
-
+const stateThreadId = 6577888;
 const systemPrompt =
   "Use tools to access the internet for each request. Present the answer for command line in the location's local language as a formatted list with fun emojis for each location onlyin local measurements. Do not provide excuses, alternatives, additional or sources. Keep it simple. Here's an API key if needed, OPEN_WEATHER_API_KEY=" +
   process.env.OPEN_WEATHER_API_KEY;
+const firstRequest = "current weather sabadell spain";
+const secondRequest = "how about dana point";
+////////////////////////
 
 // Initialize memory to persist state between graph runs
 const agentCheckpointer = new MemorySaver();
