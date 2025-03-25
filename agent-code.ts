@@ -44,14 +44,13 @@ const agentModel = new ChatOllama({
 ////////////////////////
 // DEV Variables
 const stateThreadId = 767848347888;
-const systemPrompt = "";
-const firstRequest = "current weather sabadell spain";
-const secondRequest = "how about dana point";
-////////////////////////
-
 const systemPrompt =
-  "Use tools to access the internet for each request. Present the answer for command line in the location's local language as a formatted list with fun emojis for each location onlyin local measurements. Do not provide excuses, alternatives, additional or sources. Keep it simple. Here's an API key if needed, OPEN_WEATHER_API_KEY=" +
-  process.env.OPEN_WEATHER_API_KEY;
+  "you are typescript software engineer with expertise in javascript and the langgraph framework and libraries";
+const firstRequest =
+  "use langgraph.js to create a langgraph agent that can check the latest price the US Dollar to Euro";
+const secondRequest =
+  "Review and Test the code and make it easy for me to copy";
+////////////////////////
 
 // Initialize memory to persist state between graph runs
 const agentCheckpointer = new MemorySaver();

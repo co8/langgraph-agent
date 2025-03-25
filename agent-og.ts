@@ -25,10 +25,14 @@ const agentTools = [new TavilySearchResults({ maxResults: 3 })];
 // Define LLModel
 //const agentModel = new ChatOpenAI({ temperature: 0 });
 const agentModel = new ChatOllama({
+  model: "mistral-nemo",
+  //model: "nemotron-mini",
   //model: "llama3.2:3b",
   //model: "mistral",
+  //model: "solar-pro",
+  //model: "qwen2.5:14b",
   //model: "hermes3:3b",
-  model: "aya-expanse",
+  //model: "aya-expanse",
   //model: "smollm2",
   //model: "command-r7b",
   //model: "granite3.1-moe:3b",
@@ -37,7 +41,7 @@ const agentModel = new ChatOllama({
   //verbose: true,
 });
 
-const stateThreadId = 6564654;
+const stateThreadId = 1;
 
 const systemPrompt = "";
 
@@ -53,7 +57,7 @@ const agent = createReactAgent({
 // Now it's time to use!
 const agentFinalState = await agent.invoke(
   {
-    messages: [new HumanMessage("what is the current weather in sf")],
+    messages: [new HumanMessage("what is the current weather in sabadell")],
   },
   { configurable: { thread_id: stateThreadId } }
 );
@@ -64,7 +68,7 @@ console.log(
 
 const agentNextState = await agent.invoke(
   {
-    messages: [new HumanMessage("how about ny")],
+    messages: [new HumanMessage("how about miami")],
   },
   { configurable: { thread_id: stateThreadId } }
 );
