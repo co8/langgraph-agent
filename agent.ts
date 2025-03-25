@@ -21,34 +21,27 @@ import { HumanMessage } from "@langchain/core/messages";
 import { createReactAgent } from "@langchain/langgraph/prebuilt";
 
 // Define the tools for the agent to use
-const agentTools = [new TavilySearchResults({ maxResults: 3 })];
+const agentTools = [new TavilySearchResults({ maxResults: 5 })];
 // Define LLModel
 //const agentModel = new ChatOpenAI({ temperature: 0 });
 const agentModel = new ChatOllama({
+  model: "mistral-small",
   //model: "mistral-nemo",
-  model: "nemotron-mini",
   //model: "llama3.2:3b",
   //model: "mistral",
-  //model: "solar-pro",
   //model: "qwen2.5:14b",
-  //model: "hermes3:3b",
-  //model: "aya-expanse",
-  //model: "smollm2",
-  //model: "command-r7b",
-  //model: "granite3.1-moe:3b",
-  //model: "granite3.1-dense:2b",
   //temperature: 0,
   //verbose: true,
 });
 
 ////////////////////////
 // DEV Variables
-const stateThreadId = 6577888;
+const stateThreadId = "28877148878787";
 const systemPrompt =
-  "Use tools to access the internet for each request. Present the answer for command line in the location's local language as a formatted list with fun emojis for each location onlyin local measurements. Do not provide excuses, alternatives, additional or sources. Keep it simple. Here's an API key if needed, OPEN_WEATHER_API_KEY=" +
-  process.env.OPEN_WEATHER_API_KEY;
-const firstRequest = "current weather sabadell spain";
-const secondRequest = "how about dana point";
+  "you are a copywriter and can use the internet to research and get to know the client you're writing about";
+const firstRequest =
+  "write me a short headline and body copy for an email for a happy hour at Jett Thompson Home. Highlight their store offering, the new design studio, and last projects in their portfolio";
+const secondRequest = "make it shorter and more sophisticated";
 ////////////////////////
 
 // Initialize memory to persist state between graph runs
